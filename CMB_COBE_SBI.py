@@ -3,7 +3,7 @@ import numpy as np
 import scipy.constants as const
 import matplotlib.pyplot as plt
 import corner
-#SBI
+#SBI: Simulation based Inference
 from sbi import utils as utils
 from sbi import analysis as analysis
 from sbi.inference.base import infer
@@ -63,10 +63,7 @@ def simulator(pars):
     shape2 = (np.exp(h * freq / (k * t2)) - 1) ** -1
     return amplitude * (shape1 + shape2)
 
-plt.plot(func_planck(2.725))
-# plt.show()
-
-
+#parameters controlling the SBI procedure
 num_sim = 10000
 num_sample = 100000
 t_cmb_range = [0., 5]
@@ -96,5 +93,5 @@ fig = corner.corner(samples_arr, show_titles=True, labels=[r'$T_{CMB}$', r'$T_{e
 fig.legend(handles=[plt.Line2D([], [], color="k", label=f"{num_sim} sim\n{num_sample} samples\n \nT_CMB range:{t1_range}\nT_else range: {t2_range}")], 
            fontsize=12, frameon=False, loc="upper right") #, bbox_to_anchor=(0.95, 0.05))
 # Save or show the plot
-# fig.savefig(f"CMB_corner_plot_with_TSNPE_01_{num_sim}_sims2.png", dpi=300)
+# fig.savefig(f"CMB_corner_plot_with_{num_sim}.png", dpi=300)
 plt.show()
